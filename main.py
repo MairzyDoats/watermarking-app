@@ -108,9 +108,13 @@ def clear():
     watermark_size.set("")
     opacity.set(255)
     preview_canvas.delete("all")
-    os.remove('output_img.jpg')
-    os.remove('preview.jpg')
-    os.remove('watermark.png')
+    if os.path.exists('output_img.jpg'):
+        os.remove('output_img.jpg')
+    if os.path.exists('preview.jpg'):
+        os.remove('preview.jpg')
+    if os.path.exists('watermark.png'):
+        os.remove('watermark.png')
+    save_button.config(state=DISABLED)
 
 
 # -------- UI Setup -------- #
@@ -123,7 +127,7 @@ window.config(padx=70, pady=70, bg=WHITE)
 # -------- Logo -------- #
 
 logo_canvas = Canvas(width=650, height=220, highlightthickness=0, bg=WHITE)
-logo_img = PhotoImage(file="watermark-this-final.png")
+logo_img = PhotoImage(file="watermark-this.png")
 logo_canvas.create_image(325, 110, image=logo_img)
 logo_canvas.grid(column=2, row=0)
 
